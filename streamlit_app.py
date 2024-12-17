@@ -80,4 +80,5 @@ numero = st.text_input("Digite o CPF ou CNPJ:")
 
 if numero:
     resultado = identificar_e_validar(numero)
+    
     st.write(resultado)
