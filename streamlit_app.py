@@ -76,36 +76,8 @@ def identificar_e_validar(numero):
 # Aplicação Streamlit
 st.title("Validador de CPF e CNPJ")
 
-# Inicializando variáveis
-if 'numero' not in st.session_state:
-    st.session_state.numero = ""
+numero = st.text_input("Digite o CPF ou CNPJ:")
 
-def adicionar_digito(digito):
-    st.session_state.numero += digito
-
-def apagar():
-    st.session_state.numero = st.session_state.numero[:-1]
-
-def limpar():
-    st.session_state.numero = ""
-
-# Exibindo o número digitado
-st.text_input("Número digitado:", st.session_state.numero, key="numero_exibido", disabled=True)
-
-# Teclado virtual
-colunas = st.columns(3)
-for i in range(1, 10):
-    with colunas[(i - 1) % 3]:
-        st.button(str(i), on_click=adicionar_digito, args=(str(i),))
-
-with colunas[0]:
-    st.button("0", on_click=adicionar_digito, args=("0",))
-with colunas[1]:
-    st.button("Apagar", on_click=apagar)
-with colunas[2]:
-    st.button("Limpar", on_click=limpar)
-
-# Botão de validação
-if st.button("Validar"):
-    resultado = identificar_e_validar(st.session_state.numero)
+if numero:
+    resultado = identificar_e_validar(numero)
     st.write(resultado)
